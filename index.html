@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Catalogue Filtre à Huile</title>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Turn.js محلي -->
+  <script src="js/turn.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #e6e6e6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #flipbook {
+      width: 40.6vw;   /* كتاب كامل (صفحتين ≈ 780px على شاشة 1920) */
+      height: 50vh;    /* أقصر بـ45% */
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      background: white;
+    }
+    .page {
+      width: 20.3vw;   /* صفحة ≈ 390px على شاشة 1920 */
+      height: 50vh;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* 📱 إعدادات خاصة للموبايل */
+    @media (max-width: 768px) {
+      #flipbook {
+        width: 95vw !important;   /* تقريبًا عرض الشاشة */
+        height: 70vh !important;  /* ارتفاع مناسب */
+      }
+      .page {
+        width: 95vw !important;   /* صفحة واحدة */
+        height: 70vh !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="flipbook">
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-01.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-02.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-03.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-04.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-05.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-06.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-07.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-08.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-09.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-10.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-11.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-12.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-13.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-14.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-15.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-16.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-17.jpg')"></div>
+    <div class="page" style="background-image:url('pdf_pages/Fiche technique-18.jpg')"></div>
+  </div>
+
+  <script>
+    function resizeFlipbook() {
+      if (window.innerWidth <= 768) {
+        $("#flipbook").turn("size", window.innerWidth * 0.95, window.innerHeight * 0.7);
+        $("#flipbook").turn("display", "single"); // موبايل = صفحة واحدة
+      } else {
+        $("#flipbook").turn("size", window.innerWidth * 0.406, window.innerHeight * 0.5);
+        $("#flipbook").turn("display", "double"); // كمبيوتر = صفحتين
+      }
+    }
+
+    $("#flipbook").turn({
+      width: window.innerWidth <= 768 ? window.innerWidth * 0.95 : window.innerWidth * 0.406,
+      height: window.innerWidth <= 768 ? window.innerHeight * 0.7 : window.innerHeight * 0.5,
+      display: window.innerWidth <= 768 ? 'single' : 'double',
+      autoCenter: true,
+      elevation: 50,
+      gradients: true
+    });
+
+    $(window).resize(function() {
+      resizeFlipbook();
+    });
+  </script>
+</body>
+</html>
